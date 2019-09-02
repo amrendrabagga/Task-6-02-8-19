@@ -26,7 +26,6 @@ public class PlayGame {
 
 		if (choice == 1) {
 			Game game = new Game();
-
 			game.moveX(x);
 			game.moveY(y);
 			game.moveZ(z);
@@ -34,14 +33,14 @@ public class PlayGame {
 			FileOutputStream fos = new FileOutputStream("Files/GameState.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(game);
-			System.out
-					.println("Position of x,y,z are " + game.getxPos() + ", " + game.getyPos() + ", " + game.getzPos());
+			System.out.println("Position of x,y,z are " + game.getxPos() + ", " + game.getyPos() + ", " + game.getzPos());
 			oos.close();
 			fos.close();
 
 		} else {
 			// reading object for previous position
 			File file = new File("Files/GameState.txt");
+			
 			if (file.exists() && file.length() != 0) {
 				FileInputStream fis = new FileInputStream(file);
 				ObjectInputStream ois = new ObjectInputStream(fis);
@@ -49,8 +48,7 @@ public class PlayGame {
 				game.moveX(x);
 				game.moveY(y);
 				game.moveZ(z);
-				System.out.println(
-						"Position of x,y,z are " + game.getxPos() + ", " + game.getyPos() + ", " + game.getzPos());
+				System.out.println("Position of x,y,z are " + game.getxPos() + ", " + game.getyPos() + ", " + game.getzPos());
 				ois.close();
 				fis.close();
 			} else
