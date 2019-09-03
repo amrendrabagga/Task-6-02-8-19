@@ -3,6 +3,7 @@ package com.file.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.SequenceInputStream;
@@ -23,11 +24,16 @@ public class MergingViaSequenceStream {
 			FileInputStream fis2 = new FileInputStream(file2);
 			SequenceInputStream sis = new SequenceInputStream(fis1, fis2);
 
+			System.out.println("MERGED DATA IS");
 			int j;
+			FileOutputStream fos = new FileOutputStream("Files/MergeViaSequence.txt");
 			while ((j = sis.read()) != -1) {
 				System.out.print((char) j);
+				fos.write((char)j);
+				fos.flush();
 			}
-			System.out.println("MERGED DATA IS");
+			
+			
 			sis.close();
 			fis1.close();
 			fis2.close();
