@@ -53,8 +53,24 @@ public class SplitData {
 				}
 				System.out.println("FILE SUCCESSFULLY SPLITTED");
 
-			} else
-				System.out.println("FOLDER ALREADY EXIST");
+			} else {
+				// deleting files if folder already exist
+
+				folder.delete();
+				File newFolder = new File("Files/datasplit");
+
+				newFolder.mkdir();
+
+				for (int i = 1; i <= n; i++) {
+					String newFile = commonFile + i + ".txt";
+					FileOutputStream fos = new FileOutputStream(folder.getAbsolutePath() + "/" + newFile);
+					fos.write(list.get(i - 1).getBytes());
+					fos.close();
+				}
+				System.out.println("FILE SUCCESSFULLY SPLITTED");
+
+			}
+
 		} else
 			System.out.println("FILE NOT FOUND");
 

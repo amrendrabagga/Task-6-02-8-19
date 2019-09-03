@@ -25,7 +25,7 @@ public class PlayGame {
 		int z = Integer.parseInt(reader.readLine());
 
 		if (choice == 1) {
-			Game game = new Game();
+			Game3D game = new Game3D();
 			game.moveX(x);
 			game.moveY(y);
 			game.moveZ(z);
@@ -34,6 +34,7 @@ public class PlayGame {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(game);
 			System.out.println("Position of x,y,z are " + game.getxPos() + ", " + game.getyPos() + ", " + game.getzPos());
+			System.out.println("ENDING GAME...");
 			oos.close();
 			fos.close();
 
@@ -44,11 +45,12 @@ public class PlayGame {
 			if (file.exists() && file.length() != 0) {
 				FileInputStream fis = new FileInputStream(file);
 				ObjectInputStream ois = new ObjectInputStream(fis);
-				Game game = (Game) ois.readObject();
+				Game3D game = (Game3D) ois.readObject();
 				game.moveX(x);
 				game.moveY(y);
 				game.moveZ(z);
 				System.out.println("Position of x,y,z are " + game.getxPos() + ", " + game.getyPos() + ", " + game.getzPos());
+				System.out.println("ENDING GAME...");
 				ois.close();
 				fis.close();
 			} else
